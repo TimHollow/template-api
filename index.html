@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Demo</title>
+<style>
+  body { font-family: monospace; background: #1a1a1a; color: #e0e0e0; padding: 2rem; }
+  h1 { color: #7eb8f7; }
+  button { margin: 0.5rem; padding: 0.5rem 1rem; background: #2d2d2d; color: #7eb8f7; border: 1px solid #7eb8f7; cursor: pointer; }
+  button:hover { background: #7eb8f7; color: #1a1a1a; }
+  pre { background: #2d2d2d; padding: 1rem; overflow: auto; max-height: 400px; }
+</style>
+</head>
+<body>
+<h1>API Demo — ups-watt.ru</h1>
+<button onclick="call('/products?limit=5')">GET /products</button>
+<button onclick="call('/users?limit=5')">GET /users</button>
+<button onclick="call('/carts/1')">GET /carts/1</button>
+<button onclick="call('/posts/1')">GET /posts/1</button>
+<pre id="out">Нажми кнопку...</pre>
+<script>
+async function call(path) {
+  document.getElementById('out').textContent = 'Loading...';
+  const r = await fetch('https://dummyjson.com' + path);
+  const j = await r.json();
+  document.getElementById('out').textContent = JSON.stringify(j, null, 2);
+}
+</script>
+</body>
+</html>
